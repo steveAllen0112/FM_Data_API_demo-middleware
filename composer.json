@@ -1,0 +1,15 @@
+{
+    "name": "rts/scheduler-api",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Steve Allen",
+            "email": "steven.allen@rcconsulting.com"
+        }
+    ],
+    "require": {
+        "tuupola/cors-middleware": "^0.5.2",
+        "vlucas/phpdotenv": "^2.4",
+        "airmoi/filemaker": "^2.2"
+    }
+}

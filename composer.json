@@ -10,7 +10,10 @@
     "require": {
         "tuupola/cors-middleware": "^0.5.2",
         "vlucas/phpdotenv": "^2.4",
-        "airmoi/filemaker": "^2.2"
+        "airmoi/filemaker": "^2.2",
+        "slim/slim": "^3.9",
+        "slim/php-view": "^2.2",
+        "monolog/monolog": "^1.23"
 	},
 	"config": {
 		"secure-http": false

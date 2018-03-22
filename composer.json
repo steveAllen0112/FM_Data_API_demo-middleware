@@ -11,5 +11,8 @@
         "tuupola/cors-middleware": "^0.5.2",
         "vlucas/phpdotenv": "^2.4",
         "airmoi/filemaker": "^2.2"
-    }
+	},
+	"config": {
+		"secure-http": false
+	}
 }

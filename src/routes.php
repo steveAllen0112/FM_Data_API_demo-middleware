@@ -1,14 +1,16 @@
 <?php
+use airmoi\FileMaker\Record;
+#use airmoi\FileMaker\Exception;
+use airmoi\FileMaker\FileMakerException;
 
 use Slim\Http\Request;
 use Slim\Http\Response;
 
+$dir = dirname(__FILE__);
+$includes = "$dir/../public/includes/";
+$routes = "$includes/Routes/";
+
+require_once("$includes/master.php");
+
 // Routes
-
-$app->get('/[{name}]', function (Request $request, Response $response, array $args) {
-	// Sample log message
-	$this->logger->info("Slim-Skeleton '/' route");
-
-	// Render index view
-	return $this->renderer->render($response, 'index.phtml', $args);
-});
+include("$routes/authenticate-post.php");

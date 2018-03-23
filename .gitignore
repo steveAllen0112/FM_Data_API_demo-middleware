@@ -8,5 +8,4 @@ phpunit.xml
 !.vscode/settings.json
 /logs/*
 !/logs/README.md
-*/web.config
-*/**/.env.config
+*/**/*.config

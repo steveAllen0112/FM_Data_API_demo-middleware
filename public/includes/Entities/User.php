@@ -18,7 +18,7 @@ class User {
 		$user = [
 			'rid' => (int) $rec->getRecordId(),
 			'id' => $rec->getField('__pk_UUID'),
-			'rtsNumber' => $rec->getField('cd_rts'),
+			'rtsNumber' => $rec->getField('cd_RTS'),
 			'accountNumber' => $rec->getField('cd_account_number'),
 			'name' => $rec->getField('cd_name'),
 			'address' => [

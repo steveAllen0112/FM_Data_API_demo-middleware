@@ -34,6 +34,6 @@ class User {
 
 	public function generate($user){
 		$user = self::fixDates($user,'n/j/Y');
-		return $project;
+		return $user;
 	}
 }

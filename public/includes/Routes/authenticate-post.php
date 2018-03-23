@@ -3,7 +3,7 @@ use airmoi\FileMaker\Record;
 #use airmoi\FileMaker\Exception;
 use airmoi\FileMaker\FileMakerException;
 
-use rts_scheduler\V1\User;
+use rts_scheduler\V1\Entities\User;
 
 use Slim\Http\Request;
 use Slim\Http\Response;

@@ -1,6 +1,5 @@
 <?php
 // Application middleware
-use Tuupola\Middleware\JwtAuthentication;
 
 $app->add(function($request, $response, $next) {
 
@@ -37,12 +36,17 @@ $app->add(new \Tuupola\Middleware\Cors([
 	"cache" => 0,
 ]));
 
-$app->add(new JwtAuthentication([
+$app->add(new \Tuupola\Middleware\JwtAuthentication([
 	'attribute' => 'jwt',
 	'secret' => $_ENV['RTS_JWT_SECRET'],
+	'path' => ['/'],
 	'ignore' => [
 		'/auth'
-	]
+	],
+	'error' => function($response, $arguments){
+		error_log('JWT Auth Error: '.$arguments['message']);
+		return $response -> getBody() -> write(json_encode(['error' => 401, 'message' => $arguments['message']], JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT));
+	}
 ]));
 
 $app->add(function($request, $response, $next) {

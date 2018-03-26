@@ -12,7 +12,7 @@ $app -> get('/slots/{year}/{month}/{day}', function(Request $request, Response $
 
 	$date = strtotime($args['month'].'/'.$args['day'].'/'.$args['year']);
 
-	$db = connectToDB('BESI_SMART',['errorHandling' => 'exception']);
+	$db = connectToDB('RTS',['errorHandling' => 'exception']);
 	
 	try {
 		$q = $db -> newFindCommand('web_time_slots');

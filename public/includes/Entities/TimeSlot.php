@@ -31,8 +31,8 @@ class TimeSlot {
 		$slot = [
 			'rid' => (int) $rec->getRecordId(),
 			'id' => $rec->getField('_pk_Sched_ID'),
-			'start' => $date.' '.$startTime,
-			'end' => $date.' '.$endTime,
+			'start' => $start -> format('c'),
+			'end' => $end -> format('c'),
 			'availability' => max(0,$appointments['max'] - $appointments['made'])
 		];
 

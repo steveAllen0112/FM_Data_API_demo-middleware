@@ -17,7 +17,7 @@ $app -> get('/slots/{year}/{month}/{day}', function(Request $request, Response $
 	try {
 		$q = $db -> newFindCommand('web_time_slots');
 
-		$q -> addFindCriterion('date', '=='.date('n/j/Y', $date));
+		$q -> addFindCriterion('TheDate', '=='.date('n/j/Y', $date));
 
 		$r = $q -> execute();
 

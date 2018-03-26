@@ -1,5 +1,6 @@
 <?php
 // Application middleware
+use Tuupola\Middleware\JwtAuthentication;
 
 $app->add(function($request, $response, $next) {
 
@@ -34,6 +35,14 @@ $app->add(new \Tuupola\Middleware\Cors([
 	"headers.expose" => [],
 	"credentials" => false,
 	"cache" => 0,
+]));
+
+$app->add(new JwtAuthentication([
+	'attribute' => 'jwt',
+	'secret' => $_ENV['RTS_JWT_SECRET'],
+	'ignore' => [
+		'/auth'
+	]
 ]));
 
 $app->add(function($request, $response, $next) {

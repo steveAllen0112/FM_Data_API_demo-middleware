@@ -25,7 +25,7 @@ $app -> post('/auth', function(Request $request, Response $response, array $args
 	try {
 		$q = $db -> newFindCommand('web_authenticate');
 		$q -> addFindCriterion('cd_RTS', '=='.$rtsNumber);
-		// TODO: $q -> addFindCriterion('cd_validationNumber', '=='.$validationNumber);
+		$q -> addFindCriterion('cd_PhantomAcct', '=='.$validationNumber);
 		
 		$r = $q -> execute();
 

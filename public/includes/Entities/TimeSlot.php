@@ -3,6 +3,7 @@ namespace rts_scheduler\V1\Entities;
 
 use airmoi\FileMaker\FileMakerException;
 use \Exception;
+use \DateTime;
 
 class TimeSlot {
 	public function validate($slot){

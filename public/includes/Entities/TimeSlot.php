@@ -25,8 +25,8 @@ class TimeSlot {
 		$startTime = $rec->getField('TimeSlot_Start');
 		$endTime = $rec->getField('TimeSlot_End');
 
-		$start = DateTime::createFromFormat("n/j/Y h:i:s a", $date.' '.$startTime);
-		$end = DateTime::createFromFormat("n/j/Y h:i:s a", $date.' '.$endTime);
+		$start = DateTime::createFromFormat("n/j/Y H:i:s", $date.' '.$startTime);
+		$end = DateTime::createFromFormat("n/j/Y H:i:s", $date.' '.$endTime);
 
 		$slot = [
 			'rid' => (int) $rec->getRecordId(),

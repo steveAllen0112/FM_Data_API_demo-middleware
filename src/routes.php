@@ -14,3 +14,4 @@ require_once("$includes/master.php");
 
 // Routes
 include("$routes/authenticate-post.php");
+include("$routes/timeSlots-get.php");

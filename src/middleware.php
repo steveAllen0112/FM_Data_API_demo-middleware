@@ -27,9 +27,9 @@ $app->add(new \Tuupola\Middleware\Cors([
 		"Accept",
 		"Origin",
 		"Authorization",
-		"X-DISPATCH-ENVIRONMENT",
-		"X-DISPATCH-VERSION",
-		"X-DISPATCH-MODULE"
+		"X-RTS-ENVIRONMENT",
+		"X-RTS-VERSION",
+		"X-RTS-MODULE"
 	],
 	"headers.expose" => [],
 	"credentials" => false,

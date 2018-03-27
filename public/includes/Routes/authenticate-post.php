@@ -46,7 +46,7 @@ $app -> post('/auth', function(Request $request, Response $response, array $args
 		$payload = [
 			'jti' => $jti,
 			'iat' => $now -> getTimestamp(),
-			'nbf' => $future -> getTimeStamp()
+			'exp' => $future -> getTimeStamp()
 		];
 
 		$token = \Firebase\JWT\JWT::encode($payload, $secret, "HS256");

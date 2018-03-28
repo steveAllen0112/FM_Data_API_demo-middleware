@@ -8,8 +8,12 @@ use rts_scheduler\V1\Entities\TimeSlot;
 use Slim\Http\Request;
 use Slim\Http\Response;
 
-$app -> get('/slots/{year}/{month}/{day}', function(Request $request, Response $response, array $args){
+$app -> get('/slots/{route}/{year}/{month}/{day}', function(Request $request, Response $response, array $args){
 
+	$route = $args['route'];
+	if(empty($route)) {
+		return $response -> withStatus(400) -> withJson(error(-1,'No Route specified.'));
+	}
 	$year = $args['year'];
 	if(empty($year)) {
 		return $response -> withStatus(400) -> withJson(error(-1,'No Year specified.'));
@@ -23,16 +27,21 @@ $app -> get('/slots/{year}/{month}/{day}', function(Request $request, Response $
 		return $response -> withStatus(400) -> withJson(error(-1,'No Day specified.'));
 	}
 
-	$date = strtotime($month.'/'.$day.'/'.$year);
+	$params = packForFM([
+		'route' => $route,
+		'year' => $year,
+		'month' => $month,
+		'day' => $day
+	]);
 
 	$db = connectToDB('RTS',['errorHandling' => 'exception']);
 	
 	try {
-		$q = $db -> newFindCommand('web_time_slots');
-
-		$q -> addFindCriterion('TheDate', '=='.date('n/j/Y', $date));
+		$q = $db -> newPerformScriptCommand('web_time_slots', 'web_get_time_slots', $params);
 
 		$r = $q -> execute();
+
+		checkForScriptResponse($r, 'throw');
 
 		$records = $r -> getRecords();
 		$slots = [];
@@ -43,7 +52,10 @@ $app -> get('/slots/{year}/{month}/{day}', function(Request $request, Response $
 		}
 		// error_log('finished processing project load: ' . date('H:i:s:u', strtotime('now')));
 		return $response -> withJson(success([
-			'date' => date('Y-m-j', $date),
+			'route' => $route,
+			'year' => $year,
+			'month' => $month,
+			'day' => $day,
 			'slots' => $slots
 		]));
 	}

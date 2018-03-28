@@ -14,7 +14,7 @@ $app->add(function($request, $response, $next) {
 // e.g: $app->add(new \Slim\Csrf\Guard);
 $app->add(new \Tuupola\Middleware\Cors([
 	"origin" => [
-		"https://meterschedule.com",
+		"https://marquettemi.meterschedule.com",
 		"https://api.meterschedule.com",
 		"https://localhost:4200",
 		

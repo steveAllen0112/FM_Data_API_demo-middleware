@@ -62,6 +62,13 @@ $app -> post('/auth', function(Request $request, Response $response, array $args
 	catch(Exception $e) {
 		$code = $e->getCode();
 		$msg = $e->getMessage();
+		if ($code === 401) {
+			$response = $response -> withStatus(401);
+		}
+		if ($code === 0){
+			$code = -1;
+			$response = $response -> withStatus(503);
+		}
 		return $response -> withJson(error($code,$msg));
 	}
 });

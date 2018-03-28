@@ -14,10 +14,10 @@ $app -> post('/auth', function(Request $request, Response $response, array $args
 	$validationNumber = $request -> getParsedBodyParam('validationNumber', '');
 
 	if(empty($rtsNumber)){
-		return $response -> withJson(error(-1,'No RTS Number specified.'));
+		return $response -> withStatus(400) -> withJson(error(-1,'No RTS Number specified.'));
 	}
 	if(empty($validationNumber)){
-		return $response -> withJson(error(-1,'No Validation Number specified.'));
+		return $response -> withStatus(400) -> withJson(error(-1,'No Validation Number specified.'));
 	}
 
 	$db = connectToDB('RTS',['errorHandling' => 'exception']);

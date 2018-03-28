@@ -52,10 +52,10 @@ $app -> get('/slots/{route}/{year}/{month}/{day}', function(Request $request, Re
 		}
 		// error_log('finished processing project load: ' . date('H:i:s:u', strtotime('now')));
 		return $response -> withJson(success([
-			'route' => $route,
-			'year' => $year,
-			'month' => $month,
-			'day' => $day,
+			'route' => (int) $route,
+			'year' => (int) $year,
+			'month' => (int) $month,
+			'day' => (int) $day,
 			'slots' => $slots
 		]));
 	}

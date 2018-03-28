@@ -104,13 +104,11 @@ function packForFM($arr){
 		]
 	]);
 
-	$xml = new SimpleXMLElement('<dataPack></dataPack>');
-	array_to_xml($withServerInfo,$xml);
-	$xmlStr = $xml->asXML();
+	$jsonStr = json_encode($withServerInfo, JSON_PRETTY_PRINT);
 
 	if($_ENV['STAGE'] !== 'PRODUCTION'){
-		error_log($xmlStr);
+		error_log($jsonStr);
 	}
 
-	return $xmlStr;
+	return $jsonStr;
 }

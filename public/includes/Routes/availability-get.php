@@ -30,7 +30,7 @@ $app -> get('/availability/{route}/{year}/{month}', function(Request $request, R
 	$db = connectToDB('RTS',['errorHandling' => 'exception']);
 	
 	try {
-		$q = $db -> newPerformScriptCommand('web_time_slots', 'web_get_availability', $params);
+		$q = $db -> newPerformScriptCommand('web_variables', 'web_get_availability', $params);
 
 		$r = $q -> execute();
 

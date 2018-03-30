@@ -44,9 +44,11 @@ $app -> get('/availability/{route}/{year}/{month}', function(Request $request, R
 		// error_log('finished processing project load: ' . date('H:i:s:u', strtotime('now')));
 		return $response -> withJson(success([
 			'route' => (int) $route,
-			'year' => (int) $year,
-			'month' => (int) $month,
-			'available' => $available
+			'collection' => [
+				'year' => (int) $year,
+				'month' => (int) $month,
+				'dates' => $available
+			]
 		]));
 	}
 	catch(Exception $e){

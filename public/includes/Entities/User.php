@@ -21,6 +21,7 @@ class User {
 			'rtsNumber' => $rec->getField('cd_RTS'),
 			'accountNumber' => $rec->getField('cd_account_number'),
 			'name' => $rec->getField('cd_name'),
+			'route' => $rec->getField('cd_route'),
 			'address' => [
 				'location' => $rec->getField('cd_property_location'),
 				'city' => $rec->getField('cd_city'),

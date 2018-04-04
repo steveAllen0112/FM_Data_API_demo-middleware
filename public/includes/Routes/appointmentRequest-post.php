@@ -6,7 +6,7 @@ use airmoi\FileMaker\FileMakerException;
 use Slim\Http\Request;
 use Slim\Http\Response;
 
-$app -> post('/request', function(Request $request, Response $response, array $args){
+$app -> post('/appointment', function(Request $request, Response $response, array $args){
 
 	$slot_id = $request -> getParsedBodyParam('slot_id', '');
 

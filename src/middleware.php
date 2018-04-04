@@ -40,7 +40,8 @@ $app->add(new \Tuupola\Middleware\JwtAuthentication([
 	'secret' => $_ENV['RTS_JWT_SECRET'],
 	'path' => ['/'],
 	'ignore' => [
-		'/auth'
+		'/auth',
+		'/lost'
 	],
 	'error' => function($response, $arguments){
 		error_log('JWT Auth Error: '.$arguments['message']);

@@ -21,9 +21,6 @@ $app -> post('/lost', function(Request $request, Response $response, array $args
 	if(empty($phone)){
 		return $response -> withStatus(400) -> withJson(error(-1,'No Phone Number specified.'));
 	}
-	if(empty($rtsNumber)){
-		return $response -> withStatus(400) -> withJson(error(-1,'No RTS Number specified.'));
-	}
 	if(empty($address)){
 		return $response -> withStatus(400) -> withJson(error(-1,'No Address given.'));
 	}

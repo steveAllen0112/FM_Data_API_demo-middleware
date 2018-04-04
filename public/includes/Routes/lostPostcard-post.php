@@ -47,7 +47,7 @@ $app -> post('/lost', function(Request $request, Response $response, array $args
 		$q = $db -> newPerformScriptCommand('web_contact_requests', 'web_post_contact_request', $params);
 		$r = $q -> execute();
 
-		return $response -> withJson();
+		return $response -> withJson(success());
 	}
 	catch(Exception $e) {
 		$code = $e->getCode();

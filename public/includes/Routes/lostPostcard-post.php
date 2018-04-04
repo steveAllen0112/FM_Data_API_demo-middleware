@@ -11,7 +11,6 @@ $app -> post('/lost', function(Request $request, Response $response, array $args
 	$name = $request -> getParsedBodyParam('name', '');
 	$phone = $request -> getParsedBodyParam('phone', '');
 	$email = $request -> getParsedBodyParam('email', '');
-	$rtsNumber = $request -> getParsedBodyParam('rtsNumber', '');
 	$address = $request -> getParsedBodyParam('address', '');
 	$bestTime = $request -> getParsedBodyParam('bestTime', '');
 

@@ -17,3 +17,4 @@ include("$routes/authenticate-post.php");
 include("$routes/lostPostcard-post.php");
 include("$routes/availability-get.php");
 include("$routes/timeSlots-get.php");
+include("$routes/appointmentRequest-post.php");

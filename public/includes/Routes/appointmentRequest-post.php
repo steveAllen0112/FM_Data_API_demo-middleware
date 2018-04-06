@@ -13,6 +13,7 @@ $app -> post('/appointment', function(Request $request, Response $response, arra
 	if(empty($slot_id)){
 		return $response -> withStatus(400) -> withJson(error(-1,'No Slot selected!'));
 	}
+	$email = $request -> getParsedBodyParam('email', '');
 
 	$jwt = $request -> getAttribute('jwt');
 
@@ -20,7 +21,8 @@ $app -> post('/appointment', function(Request $request, Response $response, arra
 
 	$params = packForFM([
 		'idUSR' => $user_id,
-		'idSLOT' => $slot_id
+		'idSLOT' => $slot_id,
+		'email' => $email
 	]);
 
 	$db = connectToDB('RTS',['errorHandling' => 'exception']);

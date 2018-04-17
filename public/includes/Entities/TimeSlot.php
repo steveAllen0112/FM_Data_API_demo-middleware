@@ -4,8 +4,11 @@ namespace rts_scheduler\V1\Entities;
 use airmoi\FileMaker\FileMakerException;
 use \Exception;
 use \DateTime;
+use \DateTimeZone;
 
 class TimeSlot {
+	const TIMEZONE = 'America/Chicago';
+
 	public function validate($slot){
 		return $slot;
 	}
@@ -15,7 +18,7 @@ class TimeSlot {
 	}
 
 	public function readFM($rec){
-		
+
 		$appointments = [
 			'made' => (int) $rec->getField('Appntments_Made'),
 			'max' => (int) $rec->getField('Appntments_Max')
@@ -25,8 +28,8 @@ class TimeSlot {
 		$startTime = $rec->getField('TimeSlot_Start');
 		$endTime = $rec->getField('TimeSlot_End');
 
-		$start = DateTime::createFromFormat("n/j/Y H:i:s", $date.' '.$startTime);
-		$end = DateTime::createFromFormat("n/j/Y H:i:s", $date.' '.$endTime);
+		$start = DateTime::createFromFormat("n/j/Y H:i:s", $date.' '.$startTime, new DateTimeZone(self::TIMEZONE));
+		$end = DateTime::createFromFormat("n/j/Y H:i:s", $date.' '.$endTime, new DateTimeZone(self::TIMEZONE));
 
 		$slot = [
 			'rid' => (int) $rec->getRecordId(),

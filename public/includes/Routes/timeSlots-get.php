@@ -47,7 +47,7 @@ $app -> get('/slots/{route}/{year}/{month}/{day}', function(Request $request, Re
 		$slots = [];
 		foreach($records as $record){
 			$slots[] = TimeSlot::generate(
-				TimeSlot::readFM($record)
+				TimeSlot::readFM($record, $_ENV['TIME_ZONE'])
 			);
 		}
 		// error_log('finished processing project load: ' . date('H:i:s:u', strtotime('now')));

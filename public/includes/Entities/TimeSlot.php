@@ -7,7 +7,6 @@ use \DateTime;
 use \DateTimeZone;
 
 class TimeSlot {
-	const TIMEZONE = 'America/Chicago';
 
 	public function validate($slot){
 		return $slot;
@@ -17,8 +16,8 @@ class TimeSlot {
 		return $slot;
 	}
 
-	public function readFM($rec){
-
+	public function readFM($rec, $tz = 'America/Chicago'){
+		
 		$appointments = [
 			'made' => (int) $rec->getField('Appntments_Made'),
 			'max' => (int) $rec->getField('Appntments_Max')
@@ -28,8 +27,8 @@ class TimeSlot {
 		$startTime = $rec->getField('TimeSlot_Start');
 		$endTime = $rec->getField('TimeSlot_End');
 
-		$start = DateTime::createFromFormat("n/j/Y H:i:s", $date.' '.$startTime, new DateTimeZone(self::TIMEZONE));
-		$end = DateTime::createFromFormat("n/j/Y H:i:s", $date.' '.$endTime, new DateTimeZone(self::TIMEZONE));
+		$start = DateTime::createFromFormat("n/j/Y H:i:s", $date.' '.$startTime, new DateTimeZone($tz));
+		$end = DateTime::createFromFormat("n/j/Y H:i:s", $date.' '.$endTime, new DateTimeZone($tz));
 
 		$slot = [
 			'rid' => (int) $rec->getRecordId(),

@@ -41,7 +41,7 @@ $app -> post('/auth', function(Request $request, Response $response, array $args
 		$base62 = new \Tuupola\Base62;
 		$jti = $base62->encode(random_bytes(128));
 
-		$secret = $_ENV['RTS_JWT_SECRET'];
+		$secret = $_ENV['JWT_SECRET'];
 
 		$payload = [
 			'jti' => $jti,

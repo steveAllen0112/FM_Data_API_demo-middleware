@@ -37,7 +37,7 @@ $app->add(new \Tuupola\Middleware\Cors([
 
 $app->add(new \Tuupola\Middleware\JwtAuthentication([
 	'attribute' => 'jwt',
-	'secret' => $_ENV['RTS_JWT_SECRET'],
+	'secret' => $_ENV['JWT_SECRET'],
 	'path' => ['/'],
 	'ignore' => [
 		'/auth',

@@ -17,7 +17,7 @@ $app->add(function($request, $response, $next) {
 	#$dotenv -> required("{$project}_PASSWORD")->notEmpty();
 
 	$_ENV['APP'] = [
-		'project' => $project,
+		'project' => (empty($project)) ? 'RTS' : $project,
 		'environment' => ($request->hasHeader('X-RTS-ENVIRONMENT') && !empty($request->getHeaderLine('X-RTS-ENVIRONMENT'))) ? $request->getHeaderLine('X-RTS-ENVIRONMENT') : 'UNKNOWN',
 		'version' => ($request->hasHeader('X-RTS-VERSION') && !empty($request->getHeaderLine('X-RTS-VERSION'))) ? $request->getHeaderLine('X-RTS-VERSION') : 'UNKNOWN',
 		'timezone' => ($request->hasHeader('X-RTS-TIMEZONE') && !empty($request->getHeaderLine('X-RTS-TIMEZONE'))) ? $request->getHeaderLine('X-RTS-TIMEZONE') : $_ENV['TIME_ZONE_DEFAULT']

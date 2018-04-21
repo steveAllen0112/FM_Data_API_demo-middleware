@@ -54,13 +54,15 @@ $app -> post('/auth', function(Request $request, Response $response, array $args
 		$jti = $base62->encode(random_bytes(128));
 
 		$secret = $_ENV['JWT_SECRET'];
+		$project = $_ENV['APP']['project'];
 
 		$payload = [
 			'jti' => $jti,
 			'iat' => $now -> getTimestamp(),
 			'exp' => $future -> getTimeStamp(),
 			'user_id' => $user['id'],
-			'timezone' => $timeZone
+			'timezone' => $timeZone,
+			'project' => $project
 		];
 
 		$token = \Firebase\JWT\JWT::encode($payload, $secret, "HS256");

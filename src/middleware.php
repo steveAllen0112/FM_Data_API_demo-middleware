@@ -4,11 +4,11 @@
 $app->add(function($request, $response, $next) {
 
 	$project = ($request->hasHeader('X-RTS-PROJECT') && !empty($request->getHeaderLine('X-RTS-PROJECT'))) ? $request->getHeaderLine('X-RTS-PROJECT') : '';
-	#if (empty($project)) {
-	#	$message = 'Application Configuration Error: No project set.';
-	#	error_log($message);
-	#	return $response -> getBody() -> write(json_encode(['error' => 400, 'message' => $message], JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT));
-	#}
+	if (empty($project)) {
+		$message = 'Application Configuration Error: No project set.';
+		error_log($message);
+		return $response -> withStatus(400) -> withJson(error(-1,$message));
+	}
 
 	// check to make sure it's a valid project
 	#$dotenv -> required("{$project}_FILE")->notEmpty();
@@ -43,6 +43,7 @@ $app->add(new \Tuupola\Middleware\Cors([
 		"Accept",
 		"Origin",
 		"Authorization",
+		"X-RTS-PROJECT",
 		"X-RTS-ENVIRONMENT",
 		"X-RTS-VERSION",
 		"X-RTS-TIMEZONE"

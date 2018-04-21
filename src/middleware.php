@@ -3,11 +3,26 @@
 
 $app->add(function($request, $response, $next) {
 
+	$project = ($request->hasHeader('X-RTS-PROJECT') && !empty($request->getHeaderLine('X-RTS-PROJECT'))) ? $request->getHeaderLine('X-RTS-PROJECT') : '';
+	#if (empty($project)) {
+	#	$message = 'Application Configuration Error: No project set.';
+	#	error_log($message);
+	#	return $response -> getBody() -> write(json_encode(['error' => 400, 'message' => $message], JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT));
+	#}
+
+	// check to make sure it's a valid project
+	#$dotenv -> required("{$project}_FILE")->notEmpty();
+	#$dotenv -> required("{$project}_LOCATION")->notEmpty();
+	#$dotenv -> required("{$project}_USERNAME")->notEmpty();
+	#$dotenv -> required("{$project}_PASSWORD")->notEmpty();
+
 	$_ENV['APP'] = [
+		'project' => $project,
 		'environment' => ($request->hasHeader('X-RTS-ENVIRONMENT') && !empty($request->getHeaderLine('X-RTS-ENVIRONMENT'))) ? $request->getHeaderLine('X-RTS-ENVIRONMENT') : 'UNKNOWN',
 		'version' => ($request->hasHeader('X-RTS-VERSION') && !empty($request->getHeaderLine('X-RTS-VERSION'))) ? $request->getHeaderLine('X-RTS-VERSION') : 'UNKNOWN',
 		'timezone' => ($request->hasHeader('X-RTS-TIMEZONE') && !empty($request->getHeaderLine('X-RTS-TIMEZONE'))) ? $request->getHeaderLine('X-RTS-TIMEZONE') : $_ENV['TIME_ZONE_DEFAULT']
 	];
+	
 
 	return $next($request, $response);
 });

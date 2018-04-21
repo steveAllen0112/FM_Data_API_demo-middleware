@@ -5,7 +5,8 @@ $app->add(function($request, $response, $next) {
 
 	$_ENV['APP'] = [
 		'environment' => ($request->hasHeader('X-RTS-ENVIRONMENT') && !empty($request->getHeaderLine('X-RTS-ENVIRONMENT'))) ? $request->getHeaderLine('X-RTS-ENVIRONMENT') : 'UNKNOWN',
-		'version' => ($request->hasHeader('X-RTS-VERSION') && !empty($request->getHeaderLine('X-RTS-VERSION'))) ? $request->getHeaderLine('X-RTS-VERSION') : 'UNKNOWN'
+		'version' => ($request->hasHeader('X-RTS-VERSION') && !empty($request->getHeaderLine('X-RTS-VERSION'))) ? $request->getHeaderLine('X-RTS-VERSION') : 'UNKNOWN',
+		'timezone' => ($request->hasHeader('X-RTS-TIMEZONE') && !empty($request->getHeaderLine('X-RTS-TIMEZONE'))) ? $request->getHeaderLine('X-RTS-TIMEZONE') : $_ENV['TIME_ZONE_DEFAULT']
 	];
 
 	return $next($request, $response);
@@ -16,8 +17,8 @@ $app->add(new \Tuupola\Middleware\Cors([
 	"origin" => [
 		"https://marquettemi.meterschedule.com",
 		"https://api.meterschedule.com",
+
 		"https://localhost:4200",
-		
 		"http://localhost:4200"
 	],
 	"methods" => ["GET", "POST", "OPTIONS"],
@@ -28,7 +29,8 @@ $app->add(new \Tuupola\Middleware\Cors([
 		"Origin",
 		"Authorization",
 		"X-RTS-ENVIRONMENT",
-		"X-RTS-VERSION"
+		"X-RTS-VERSION",
+		"X-RTS-TIMEZONE"
 	],
 	"headers.expose" => [],
 	"credentials" => false,

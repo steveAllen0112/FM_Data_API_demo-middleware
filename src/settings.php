@@ -9,7 +9,7 @@ $dotenv -> required('RTS_LOCATION')->notEmpty();
 $dotenv -> required('RTS_USERNAME')->notEmpty();
 $dotenv -> required('RTS_PASSWORD')->notEmpty();
 $dotenv -> required('JWT_SECRET')->notEmpty();
-$dotenv -> required('TIME_ZONE')->notEmpty();
+$dotenv -> required('TIME_ZONE_DEFAULT')->notEmpty();
 
 $environment = $_ENV['STAGE'];
 

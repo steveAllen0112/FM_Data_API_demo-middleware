@@ -10,8 +10,20 @@ use Slim\Http\Response;
 
 $app -> post('/auth', function(Request $request, Response $response, array $args){
 
+	$tz_header = '';
+	if($request->hasHeader('X-RTS-TIMEZONE')) {
+		$tz_header = $request->getHeader('X-RTS-TIMEZONE');
+	}
+
 	$rtsNumber = $request -> getParsedBodyParam('rtsNumber', '');
 	$validationNumber = $request -> getParsedBodyParam('validationNumber', '');
+	$timeZone = $request->getParsedBodyParam('timeZone', $tz_header);
+
+	// if the time zone has not been provided in the parameters, nor in the header,
+	//  then set the default from the environment.
+	if(empty($timeZone)){
+		$timeZone = $_ENV['TIME_ZONE_DEFAULT'];
+	}
 
 	if(empty($rtsNumber)){
 		return $response -> withStatus(400) -> withJson(error(-1,'No RTS Number specified.'));
@@ -47,7 +59,8 @@ $app -> post('/auth', function(Request $request, Response $response, array $args
 			'jti' => $jti,
 			'iat' => $now -> getTimestamp(),
 			'exp' => $future -> getTimeStamp(),
-			'user_id' => $user['id']
+			'user_id' => $user['id'],
+			'timezone' => $timeZone
 		];
 
 		$token = \Firebase\JWT\JWT::encode($payload, $secret, "HS256");

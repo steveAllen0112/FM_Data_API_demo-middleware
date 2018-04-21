@@ -26,7 +26,9 @@ $app -> get('/slots/{route}/{year}/{month}/{day}', function(Request $request, Re
 	if(empty($day)) {
 		return $response -> withStatus(400) -> withJson(error(-1,'No Day specified.'));
 	}
-
+	
+	$jwt = $request -> getAttribute('jwt');
+	
 	$params = packForFM([
 		'route' => $route,
 		'year' => $year,
@@ -45,9 +47,10 @@ $app -> get('/slots/{route}/{year}/{month}/{day}', function(Request $request, Re
 
 		$records = $r -> getRecords();
 		$slots = [];
+
 		foreach($records as $record){
 			$slots[] = TimeSlot::generate(
-				TimeSlot::readFM($record, $_ENV['TIME_ZONE'])
+				TimeSlot::readFM($record, $jwt['timezone'])
 			);
 		}
 		// error_log('finished processing project load: ' . date('H:i:s:u', strtotime('now')));

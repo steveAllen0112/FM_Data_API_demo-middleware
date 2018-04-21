@@ -36,7 +36,7 @@ $app -> get('/slots/{route}/{year}/{month}/{day}', function(Request $request, Re
 		'day' => $day
 	]);
 
-	$db = connectToDB('RTS',['errorHandling' => 'exception']);
+	$db = connectToDB($_ENV['APP']['project'],['errorHandling' => 'exception']);
 	
 	try {
 		$q = $db -> newPerformScriptCommand('web_time_slots', 'web_get_time_slots', $params);

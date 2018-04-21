@@ -37,7 +37,7 @@ $app -> post('/lost', function(Request $request, Response $response, array $args
 		'bestTimeToContact' => $bestTime
 	]);
 
-	$db = connectToDB('RTS',['errorHandling' => 'exception']);
+	$db = connectToDB($_ENV['APP']['project'],['errorHandling' => 'exception']);
 
 	try {
 		$q = $db -> newPerformScriptCommand('web_contact_requests', 'web_post_contact_request', $params);

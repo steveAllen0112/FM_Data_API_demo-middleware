@@ -32,7 +32,7 @@ $app -> post('/auth', function(Request $request, Response $response, array $args
 		return $response -> withStatus(400) -> withJson(error(-1,'No Validation Number specified.'));
 	}
 
-	$db = connectToDB('RTS',['errorHandling' => 'exception']);
+	$db = connectToDB($_ENV['APP']['project'],['errorHandling' => 'exception']);
 
 	try {
 		$q = $db -> newFindCommand('web_authenticate');

@@ -27,7 +27,7 @@ $app -> get('/availability/{route}/{year}/{month}', function(Request $request, R
 		'month' => $month
 	]);
 
-	$db = connectToDB('RTS',['errorHandling' => 'exception']);
+	$db = connectToDB($_ENV['APP']['project'],['errorHandling' => 'exception']);
 	
 	try {
 		$q = $db -> newPerformScriptCommand('web_variables', 'web_get_availability', $params);

@@ -1,8 +1,4 @@
 <?php
-use airmoi\FileMaker\Record;
-#use airmoi\FileMaker\Exception;
-use airmoi\FileMaker\FileMakerException;
-
 use Slim\Http\Request;
 use Slim\Http\Response;
 

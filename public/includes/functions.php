@@ -1,5 +1,4 @@
 <?php
-use airmoi\FileMaker\FileMaker;
 use Slim\Http\Response;
 
 function getTimestamp($record,$fieldName){

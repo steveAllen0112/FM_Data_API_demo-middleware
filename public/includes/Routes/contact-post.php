@@ -23,7 +23,7 @@ $app -> post('/contacts', function(Request $request, Response $response, array $
 
 		//TODO: Add Contact
 
-		return $response -> withJson(success());
+		return $response -> withJson(success(['token' => $token]));
 	}
 	catch(Exception $e) {
 		disconnectFromDB($_ENV['APP']['project']);

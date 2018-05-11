@@ -42,35 +42,42 @@ function connectToDB($project){
 	$username = $_ENV[$project.'_USERNAME'];
 	$password = $_ENV[$project.'_PASSWORD'];
 
+	$base_uri = "https://$location/fmi/data/v1/databases/$filename";
+	$authStrUP = base64_encode("$username:$password");
+
 	$guzzleClient = new Client([
-		'base_url' => $location + "/fmi/data/v1/databases/${filename}"
+		'base_uri' => $base_uri
 	]);
 
-	$response = $guzzleClient->post('/sessions', [
+	$guzzleResponse = $guzzleClient->post("$base_uri/sessions", [
+		'verify' => false,
 		'headers' => [
-			'Authorization' => 'Bearer ' + base64_encode("$username:$password"),
+			'Authorization' => "Basic $authStrUP",
 			'Content-Type' => 'application/json'
 		],
 		'body' => '{}'
 	]);
 
-	return $response;
+	$body = json_decode($guzzleResponse->getBody()->getContents(), true);
+
+	$token = $body['response']['token'];
+
+	return [
+		'base_uri' => $base_uri,
+		'token' => $token
+	];
 }
 
-function disconnectFromDB($project, $token) {
-
-	$filename = $_ENV[$project.'_FILE'];
-	$location = $_ENV[$project.'_LOCATION'];
-	$username = $_ENV[$project.'_USERNAME'];
-	$password = $_ENV[$project.'_PASSWORD'];
+function disconnectFromDB($session) {
 
 	$guzzleClient = new Client([
-		'base_url' => $location + "/fmi/data/v1/databases/${filename}"
+		'base_uri' => $session['base_uri']
 	]);
 
-	$response = $guzzleClient->delete("/sessions/$token", [
+	$guzzleResponse = $guzzleClient->delete( "{$session['base_uri']}/sessions/{$session['token']}", [
+		'verify' => false,
 		'headers' => [
-			'Authorization' => 'Bearer ' + base64_encode("$username:$password"),
+			'Authorization' => "Bearer {$session['token']}",
 			'Content-Type' => 'application/json'
 		],
 		'body' => '{}'

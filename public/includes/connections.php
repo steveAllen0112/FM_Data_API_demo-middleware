@@ -1,5 +1,5 @@
 <?php
-use airmoi\FileMaker\FileMaker;
+use GuzzleHttp\Client;
 
 function checkProjectConfiguration($project) {
 	$projects = explode(',', $_ENV['PROJECTS']);
@@ -42,16 +42,39 @@ function connectToDB($project){
 	$username = $_ENV[$project.'_USERNAME'];
 	$password = $_ENV[$project.'_PASSWORD'];
 
-	//TODO: Implement connection
+	$guzzleClient = new Client([
+		'base_url' => $location + "/fmi/data/v1/databases/${filename}"
+	]);
 
-	return $token;
+	$response = $guzzleClient->post('/sessions', [
+		'headers' => [
+			'Authorization' => 'Bearer ' + base64_encode("$username:$password"),
+			'Content-Type' => 'application/json'
+		],
+		'body' => '{}'
+	]);
+
+	return $response;
 }
 
 function disconnectFromDB($project, $token) {
-	
-	$location = $_ENV[$project.'_LOCATION'];
 
-	//TODO: Implement disconnection
+	$filename = $_ENV[$project.'_FILE'];
+	$location = $_ENV[$project.'_LOCATION'];
+	$username = $_ENV[$project.'_USERNAME'];
+	$password = $_ENV[$project.'_PASSWORD'];
+
+	$guzzleClient = new Client([
+		'base_url' => $location + "/fmi/data/v1/databases/${filename}"
+	]);
+
+	$response = $guzzleClient->delete("/sessions/$token", [
+		'headers' => [
+			'Authorization' => 'Bearer ' + base64_encode("$username:$password"),
+			'Content-Type' => 'application/json'
+		],
+		'body' => '{}'
+	]);
 }
 
 $fmFindSymbols = [

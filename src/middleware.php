@@ -15,7 +15,6 @@ $app->add(function($request, $response, $next) {
 		'project' => $project,
 		'environment' => ($request->hasHeader('X-RCC-ENVIRONMENT') && !empty($request->getHeaderLine('X-RCC-ENVIRONMENT'))) ? $request->getHeaderLine('X-RCC-ENVIRONMENT') : 'UNKNOWN',
 		'version' => ($request->hasHeader('X-RCC-VERSION') && !empty($request->getHeaderLine('X-RCC-VERSION'))) ? $request->getHeaderLine('X-RCC-VERSION') : 'UNKNOWN',
-		'timezone' => ($request->hasHeader('X-RCC-TIMEZONE') && !empty($request->getHeaderLine('X-RCC-TIMEZONE'))) ? $request->getHeaderLine('X-RCC-TIMEZONE') : $_ENV['TIME_ZONE_DEFAULT']
 	];
 	
 	return $next($request, $response);
@@ -38,8 +37,7 @@ $app->add(new \Tuupola\Middleware\Cors([
 		"Authorization",
 		"X-RCC-PROJECT",
 		"X-RCC-ENVIRONMENT",
-		"X-RCC-VERSION",
-		"X-RCC-TIMEZONE"
+		"X-RCC-VERSION"
 	],
 	"headers.expose" => [],
 	"credentials" => false,

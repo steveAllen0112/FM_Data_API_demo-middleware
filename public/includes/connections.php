@@ -35,20 +35,23 @@ function checkProjectConfiguration($project) {
 	return [ 'status' => 200 ];
 }
 
-function connectToDB($project,$params=['errorHandling' => 'exception']){
+function connectToDB($project){
 
 	$filename = $_ENV[$project.'_FILE'];
 	$location = $_ENV[$project.'_LOCATION'];
 	$username = $_ENV[$project.'_USERNAME'];
 	$password = $_ENV[$project.'_PASSWORD'];
 
-	$db = new FileMaker($filename, $location, $username, $password);
+	//TODO: Implement connection
 
-	foreach($params as $prop => $value){
-		$db ->setProperty($prop, $value);
-	}
-	return $db;
+	return $token;
+}
+
+function disconnectFromDB($project, $token) {
 	
+	$location = $_ENV[$project.'_LOCATION'];
+
+	//TODO: Implement disconnection
 }
 
 $fmFindSymbols = [

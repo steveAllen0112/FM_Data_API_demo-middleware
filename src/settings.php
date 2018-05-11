@@ -2,10 +2,9 @@
 $dotenv = new Dotenv\Dotenv(__DIR__, '.env.config');
 $dotenv -> load();
 
+$dotenv -> required('PROJECTS')->notEmpty();
 $dotenv -> required('STAGE')->notEmpty();
 $dotenv -> required('VERSION')->notEmpty();
-$dotenv -> required('JWT_SECRET')->notEmpty();
-$dotenv -> required('TIME_ZONE_DEFAULT')->notEmpty();
 
 $environment = $_ENV['STAGE'];
 

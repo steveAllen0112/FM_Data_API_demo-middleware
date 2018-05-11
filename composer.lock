@@ -7,46 +7,6 @@
     "content-hash": "2f383a797a87a30bb3d7ce1a73572c33",
     "packages": [
         {
-            "name": "airmoi/filemaker",
-            "version": "2.2.4",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/airmoi/FileMaker.git",
-                "reference": "03684199b030b35ac6c64a8e566b02f91ca28a9b"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/airmoi/FileMaker/zipball/03684199b030b35ac6c64a8e566b02f91ca28a9b",
-                "reference": "03684199b030b35ac6c64a8e566b02f91ca28a9b",
-                "shasum": ""
-            },
-            "require-dev": {
-                "phpunit/phpunit": "^5.6"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "airmoi\\FileMaker\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "FileMaker Sofware license"
-            ],
-            "authors": [
-                {
-                    "name": "Romain Dunand",
-                    "email": "airmoi@gmail.com"
-                }
-            ],
-            "description": "Rewriten FileMaker PHP-API",
-            "keywords": [
-                "FileMaker",
-                "PHP-API"
-            ],
-            "time": "2017-12-30T01:28:02+00:00"
-        },
-        {
             "name": "container-interop/container-interop",
             "version": "1.2.0",
             "source": {

@@ -26,7 +26,9 @@ $app->add(new \Tuupola\Middleware\Cors([
 		"https://steveAllen0112.github.io",
 
 		"https://localhost:4200",
-		"http://localhost:4200"
+		"http://localhost:4200",
+		"https://localhost:8000",
+		"http://localhost:8000"
 	],
 	"methods" => ["POST", "OPTIONS"],
 	"headers.allow" => [

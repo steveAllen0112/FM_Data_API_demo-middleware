@@ -11,11 +11,17 @@ if (PHP_SAPI == 'cli-server') {
 
 require __DIR__ . '/../vendor/autoload.php';
 
+use Slim\Http\Request;
+use Slim\Http\Response;
+use Slim\Http\UploadedFile;
+
 session_start();
 
 // Instantiate the app
 $settings = require __DIR__ . '/../src/settings.php';
 $app = new \Slim\App($settings);
+$container = $app -> getContainer();
+$container['upload_directory'] = sys_get_temp_dir();
 
 // Set up dependencies
 require __DIR__ . '/../src/dependencies.php';

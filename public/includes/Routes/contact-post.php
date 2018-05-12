@@ -9,7 +9,7 @@ use Slim\Http\Response;
 use Slim\Http\UploadedFile;
 
 $app -> post('/contacts', function(Request $request, Response $response, array $args){
-
+	return $response->withStatus(200)->withJson(success(['error_log_location'=> ini_get('error_log')]));
 	$name = [
 		'first' => $request -> getParsedBodyParam('name_first', ''),
 		'last' => $request -> getParsedBodyParam('name_last', '')

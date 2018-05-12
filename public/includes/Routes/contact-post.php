@@ -68,7 +68,7 @@ $app -> post('/contacts', function(Request $request, Response $response, array $
 				'fieldData' => [
 					'First_Name' => $name['first'],
 					'Last_Name' => $name['last'],
-					'Email' => $email
+					'web_temp_email' => $email
 				],
 				'script' => 'web_split_out_email'
 			])

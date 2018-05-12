@@ -8,6 +8,7 @@ if (PHP_SAPI == 'cli-server') {
         return false;
     }
 }
+ini_set('error_log', dirname(__FILE__) . '/../logs/errors.log');
 
 require __DIR__ . '/../vendor/autoload.php';
 

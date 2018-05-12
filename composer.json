@@ -14,7 +14,8 @@
         "slim/php-view": "^2.2",
         "monolog/monolog": "^1.23",
         "tuupola/base62": "^0.9.0",
-        "guzzlehttp/guzzle": "~6.0"
+        "guzzlehttp/guzzle": "~6.0",
+        "paragonie/random_compat": "^2.0"
 	},
 	"config": {
 		"secure-http": false

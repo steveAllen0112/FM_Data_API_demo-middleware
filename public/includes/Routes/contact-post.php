@@ -97,7 +97,7 @@ $app -> post('/contacts', function(Request $request, Response $response, array $
 		}
 
 		//disconnect
-		//disconnectFromDB($dataAPI_session);
+		disconnectFromDB($dataAPI_session);
 
 		return $response -> withJson(success(['results' => [
 			'create' => $createContact['FMResponse'],

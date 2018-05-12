@@ -17,9 +17,11 @@ $app -> post('/contacts', function(Request $request, Response $response, array $
 	$email = $request -> getParsedBodyParam('email', '');
 
 	if(empty($name['first']) and empty($name['last'])){
+		error_log('bad request: no name detected');
 		return $response -> withStatus(400) -> withJson(error(-1,'No Name given.'));
 	}
 	if(empty($email)){
+		error_log('bad request: no email detected');
 		return $response -> withStatus(400) -> withJson(error(-1,'No Email given.'));
 	}
 
@@ -67,7 +69,8 @@ $app -> post('/contacts', function(Request $request, Response $response, array $
 					'First_Name' => $name['first'],
 					'Last_Name' => $name['last'],
 					'Email' => $email
-				]
+				],
+				'script' => 'web_split_out_email'
 			])
 		]);
 
